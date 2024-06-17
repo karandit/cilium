@@ -492,6 +492,10 @@ data:
   mtu: {{ .Values.MTU | quote }}
 {{- end }}
 
+{{- if .Values.enableRouteMTUForCNIChaining }}
+  enable-route-mtu-for-cni-chaining: {{ .Values.enableRouteMTUForCNIChaining | quote }}
+{{- end }}
+
 {{- if .Values.eni.enabled }}
   {{- if not .Values.endpointRoutes.enabled }}
   enable-endpoint-routes: "true"
