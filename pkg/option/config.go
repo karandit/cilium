@@ -468,6 +468,10 @@ const (
 	// MTUName is the name of the MTU option
 	MTUName = "mtu"
 
+	// EnableRouteMTUForCNIChaining enables route MTU for pod netns when
+	// CNI chaining is used.
+	EnableRouteMTUForCNIChaining = "enable-route-mtu-for-cni-chaning"
+
 	// RouteMetric is the name of the route-metric option
 	RouteMetric = "route-metric"
 
@@ -1471,6 +1475,10 @@ type DaemonConfig struct {
 
 	// MTU is the maximum transmission unit of the underlying network
 	MTU int
+
+	// EnableRouteMTUForCNIChaining enables route MTU for pod netns when
+	// CNI chaining is used.
+	EnableRouteMTUForCNIChaining bool
 
 	// RouteMetric is the metric used for the routes added to the cilium_host device
 	RouteMetric int
@@ -3062,6 +3070,7 @@ func (c *DaemonConfig) Populate(vp *viper.Viper) {
 	c.MonitorAggregation = vp.GetString(MonitorAggregationName)
 	c.MonitorAggregationInterval = vp.GetDuration(MonitorAggregationInterval)
 	c.MTU = vp.GetInt(MTUName)
+	c.EnableRouteMTUForCNIChaining = vp.GetBool(EnableRouteMTUForCNIChaining)
 	c.PreAllocateMaps = vp.GetBool(PreAllocateMapsName)
 	c.ProcFs = vp.GetString(ProcFs)
 	c.RestoreState = vp.GetBool(Restore)

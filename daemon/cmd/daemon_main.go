@@ -702,6 +702,9 @@ func InitGlobalFlags(cmd *cobra.Command, vp *viper.Viper) {
 	flags.Int(option.MTUName, 0, "Overwrite auto-detected MTU of underlying network")
 	option.BindEnv(vp, option.MTUName)
 
+	flags.Bool(option.EnableRouteMTUForCNIChaining, false, "Enable route MTU for pod netns when CNI chaining is used")
+	option.BindEnv(vp, option.EnableRouteMTUForCNIChaining)
+
 	flags.Int(option.RouteMetric, 0, "Overwrite the metric used by cilium when adding routes to its 'cilium_host' device")
 	option.BindEnv(vp, option.RouteMetric)
 
